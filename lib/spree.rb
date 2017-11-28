@@ -1,22 +1,15 @@
-#######################################################################################################
-# Substantial portions of this code were adapted from the Radiant CMS project (http://radiantcms.org) #
-#######################################################################################################
+require 'spree_core'
+require 'spree_api'
+require 'spree_backend'
+require 'spree_frontend'
+require 'spree_sample'
 
-SPREE_ROOT = File.expand_path(File.join(File.dirname(__FILE__), "..")) unless defined? SPREE_ROOT
-
-unless defined? Spree::Version
-  module Spree
-    module Version
-      Major = '0'
-      Minor = '9'
-      Tiny  = '99'
-
-      class << self
-        def to_s
-          [Major, Minor, Tiny].join('.')
-        end
-        alias :to_str :to_s
-      end
-    end
-  end
+begin
+  require 'protected_attributes'
+  puts '*' * 75
+  puts '[FATAL] Spree does not work with the protected_attributes gem installed!'
+  puts 'You MUST remove this gem from your Gemfile. It is incompatible with Spree.'
+  puts '*' * 75
+  exit
+rescue LoadError
 end
